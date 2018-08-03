@@ -1,0 +1,36 @@
+/*Estilos para webgrid*/
+.webgrid-table {
+    font-family: "Pokemon GB", Arial, Helvetica, sans-serif;
+    font-size: 1.0em;
+    width: 100%;
+    display: table;
+    border-collapse: separate;
+    border: solid 1px;
+    background-color: #1f1d1d;
+    color: white;
+}
+
+    .webgrid-table td, th {
+        border: 1px solid ;
+        padding: 3px 7px 2px;
+    }
+
+.webgrid-header {
+    background-color:aliceblue;
+    color: #FFFFFF;
+    padding-bottom: 4px;
+    padding-top: 5px;
+    text-align: left;
+}
+
+.webgrid-footer {
+}
+
+.webgrid-row-style {
+    padding: 3px 7px 2px;
+}
+
+.webgrid-alternating-row {
+    background-color: #346b9a;
+    padding: 3px 7px 2px;
+}

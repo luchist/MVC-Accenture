@@ -1,0 +1,76 @@
+﻿@model IEnumerable<MVC_accenture.Models.Autore>
+
+@{
+    ViewBag.Title = "Index";
+    WebGrid grid = new WebGrid(Model, rowsPerPage:15);
+}
+
+
+
+<link href="~/Content/EstilosGridBlue.css" rel="stylesheet" />
+
+<br />
+<h2>Listado de Autores</h2>
+<br />
+
+<p>
+    @Html.ActionLink("Agregar Nuevo", "Agregar")
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Buscar por Apellido: @Html.TextBox("buscar")
+        <input type="submit" value="Buscar" class="btn-primary" />
+    </p>
+}
+
+
+
+@grid.GetHtml(
+    fillEmptyRows: false,
+    tableStyle: "webgrid-table",
+    headerStyle: "webgrid-header",
+    footerStyle: "webgrid-footer",
+    alternatingRowStyle: "webgrid-alternating-row",
+    rowStyle: "webgrid-row-style",
+
+    mode: WebGridPagerModes.All,
+    firstText: "<< Primera",
+    previousText: "< Anterior",
+    nextText: "Siguiente >",
+    lastText: "Última >>",
+
+columns: new[]
+{
+    grid.Column("ID",header:"Codigo"),
+    grid.Column("Apellido",header:"Apellido"),
+    grid.Column("Nombre",header:"Nombre"),
+    grid.Column("Nacionalidad",header:"CodPais"),
+    grid.Column("Pais.Descripcion",header:"Pais"),
+    grid.Column("FechaNacimiento",header:"Fecha Nacimiento",format: (item) => string.Format("{0:dd/MM/yyyy}", item.FechaNacimiento)),
+    grid.Column("",
+          header: "Acciones",
+          format: @<text>
+            @Html.ActionLink("Editar",   "Edit",   new { id=item.ID} )
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.ID } )
+            @Html.ActionLink("Biografia", "GetPDF", new { id=item.ID } )
+        </text>
+    )
+
+ })
+
+
+
+<p>
+    @Html.ActionLink("Exportar a PDF", "ExportarPDF", "GridAutores")
+    @Html.ActionLink("Exportar a EXCEL", "ExportarEXCEL", "GridAutores")
+</p>
+
+
+
+
+
+
+
+

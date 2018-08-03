@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="@Url.Content("~/Scripts/jquery-1.10.0.js")" type="text/javascript"></script>
+    <script>
+        function fnClick()
+        {
+          $.ajax(
+             {
+               type: 'POST',
+               data: "",
+               dataType: 'html',
+               url: '@Url.Action("vistaParcial", "Parcial")',
+               success: function (result)
+                {
+                        $("#pvistaParcial").html(result);
+                },
+               error: function (error) {
+                    alert('Fallo la vista parcial');
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>VISTA PRINCIPAL @ViewBag.Hora</h1>
+    <br />
+    <div>
+        <input type="button" id="miBton" value="Click para ejecutar vista parcial"
+               onclick="fnClick()" />
+    </div>
+    <div id="pvistaParcial">
+    </div>
+</body>
+</html>
+
